@@ -1,0 +1,30 @@
+{"conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "divergentmining_base"
+      }
+    }
+  ],
+  "result": {
+    "item": "primitivetools:primitive_hammer_gwl"
+  },
+  "pattern": [
+    "SB",
+    "HS"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "minecraft:stone",
+	  "data": 1
+    },
+	"H": {
+      "item": "minecraft:stick"
+    },
+	"B": {
+      "item": "primitivetools:leather_strip"
+    }
+  }
+}

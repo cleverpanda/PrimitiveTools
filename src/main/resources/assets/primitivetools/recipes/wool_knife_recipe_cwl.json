@@ -1,0 +1,17 @@
+{  
+   "type":"primitivetools:shapeless_knife",
+   "ingredients":[  
+      {  
+         "item":"minecraft:wool",
+	 "data":32767
+      },
+    {
+       "item":"primitivetools:primitive_knife_cwl",
+	   "data":32767
+    }
+   ],
+   "result":{  
+      "item":"minecraft:string",
+      "count":4
+   }
+}

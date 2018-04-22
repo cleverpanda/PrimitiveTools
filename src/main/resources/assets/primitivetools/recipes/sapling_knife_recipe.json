@@ -1,0 +1,18 @@
+{  
+   "type":"primitivetools:shapeless_knife",
+   "ingredients":[  
+      {
+       "ore": "treeSapling",
+	   "type": "forge:ore_dict"
+    },
+    {
+       "ore": "toolKnife",
+	   "type": "forge:ore_dict",
+	   "data":32767
+    }
+   ],
+   "result":{  
+      "item":"minecraft:stick",
+      "count":2
+   }
+}

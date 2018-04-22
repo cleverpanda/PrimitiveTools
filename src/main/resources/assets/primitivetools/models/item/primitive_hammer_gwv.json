@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "primitivetools:items/tools/primitive_hammer_gwv"
+    }
+}

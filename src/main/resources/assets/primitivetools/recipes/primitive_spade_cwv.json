@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "primitivetools:primitive_spade_cwv"
+  },
+  "pattern": [
+    "BH",
+	"S "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "H": {
+      "item": "primitivetools:flint_flake"
+    },
+	"S": {
+      "item": "minecraft:stick"
+    },
+	"B": {
+      "item": "primitivetools:cordage_vine"
+    }
+  }
+}

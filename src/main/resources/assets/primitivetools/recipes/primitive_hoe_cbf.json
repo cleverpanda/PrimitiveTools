@@ -1,0 +1,24 @@
+{
+  "result": {
+    "item": "primitivetools:primitive_hoe_cbf"
+  },
+  "pattern": [
+    "PH",
+	"BS"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "P": {
+      "item": "primitivetools:flint_point"
+    },
+	"H": {
+      "item": "primitivetools:flint_shard"
+    },
+	"S": {
+      "item": "minecraft:bone"
+    },
+	"B": {
+      "item": "primitivetools:cordage_fiber"
+    }
+  }
+}

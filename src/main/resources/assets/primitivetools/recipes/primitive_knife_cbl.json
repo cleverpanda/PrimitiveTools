@@ -1,0 +1,30 @@
+{    
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "leatherworks"
+      }
+    }
+  ],
+  "result": {
+    "item": "primitivetools:primitive_knife_cbl"
+  },
+  "pattern": [
+    "HB",
+	" S"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "H": {
+      "item": "primitivetools:flint_point"
+    },
+	"S": {
+      "item": "minecraft:bone"
+    },
+	"B": {
+      "item": "primitivetools:leather_strip"
+    }
+  }
+}

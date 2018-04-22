@@ -1,0 +1,21 @@
+1.0.0
+Cleanup for release
+
+0.22.0
+added sand and gravel flint drops. 1/8 without spade, 1/5 with.
+double plants drop fiber
+Added hide scraping knife recipes for leatherworks
+added crafting recipes for hammers
+nerfed harvest time on incompatible tools (use a hatchet for trees, not digging dirt)
+Added primitive hoe
+
+0.20.0
+fixed tools being held wrong
+removed leather strip if Leatherworks is installed
+wool to string with knife
+fixed knife interactions with Better Agriculture animals
+knifes now multiply chance for all drops from grass
+Registered knives as "toolKnife"
+added recipes for crafting wool into string
+
+

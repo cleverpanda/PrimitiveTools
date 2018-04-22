@@ -1,0 +1,23 @@
+{
+  "result": {
+    "item": "minecraft:arrow",
+	"count": 4
+  },
+  "pattern": [
+    "P",
+	"S",
+	"F"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "P": {
+      "item": "primitivetools:flint_point"
+    },
+	"S": {
+      "item": "minecraft:stick"
+    },
+	"F": {
+      "item": "minecraft:feather"
+    }
+  }
+}

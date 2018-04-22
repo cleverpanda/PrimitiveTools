@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "primitivetools:primitive_hatchet_cbf"
+  },
+  "pattern": [
+    "HB",
+	" S"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "H": {
+      "item": "primitivetools:flint_shard"
+    },
+	"S": {
+      "item": "minecraft:bone"
+    },
+	"B": {
+      "item": "primitivetools:cordage_fiber"
+    }
+  }
+}

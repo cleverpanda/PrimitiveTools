@@ -1,0 +1,24 @@
+{
+  "result": {
+    "item": "primitivetools:primitive_pick_cbf"
+  },
+  "pattern": [
+    "FB",
+    "SH"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "H": {
+      "item": "primitivetools:flint_flake"
+    },
+"F": {
+      "item": "primitivetools:flint_shard"
+    },
+	"S": {
+      "item": "minecraft:bone"
+    },
+	"B": {
+      "item": "primitivetools:cordage_fiber"
+    }
+  }
+}

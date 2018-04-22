@@ -1,0 +1,30 @@
+{  
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "leatherworks"
+      }
+    }
+  ],
+  "result": {
+    "item": "primitivetools:primitive_spade_cwl"
+  },
+  "pattern": [
+    "BH",
+	"S "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "H": {
+      "item": "primitivetools:flint_flake"
+    },
+	"S": {
+      "item": "minecraft:stick"
+    },
+	"B": {
+      "item": "primitivetools:leather_strip"
+    }
+  }
+}

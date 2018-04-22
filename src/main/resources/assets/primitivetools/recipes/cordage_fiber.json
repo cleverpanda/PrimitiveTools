@@ -1,0 +1,17 @@
+{  
+   "result":{  
+      "item":"primitivetools:cordage_fiber"
+   },
+   "ingredients":[  
+      {  
+         "item":"primitivetools:plant_fiber"
+      },
+      {  
+         "item":"primitivetools:plant_fiber"
+      },
+      {  
+         "item":"primitivetools:plant_fiber"
+      }
+   ],
+   "type":"minecraft:crafting_shapeless"
+}
