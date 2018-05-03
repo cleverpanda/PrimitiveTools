@@ -1,3 +1,14 @@
+1.1.0
+Added Ore dict entries for all the things!
+Added crafting recipe for bone needle
+Added/Changed all recipes to support Ore Dictionary
+Added container items to knives,hatchets, and hammers for easier crafting recipes
+This also fixes JEI support
+Removed durability from spears
+Removed needless tooltip info
+Cleaned up
+Changed leather works integration to be easier
+
 1.0.0
 Cleanup for release
 

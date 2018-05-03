@@ -18,7 +18,8 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 public class PrimitiveKnife extends ItemTool{
-	
+
+
 	private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet(Blocks.LEAVES, Blocks.LEAVES2,
 			Blocks.RED_MUSHROOM_BLOCK, Blocks.BROWN_MUSHROOM_BLOCK,Blocks.PUMPKIN,
 			Blocks.LIT_PUMPKIN, Blocks.MELON_BLOCK, Blocks.CACTUS, Blocks.TALLGRASS, Blocks.WHEAT,Blocks.HAY_BLOCK);
@@ -28,14 +29,14 @@ public class PrimitiveKnife extends ItemTool{
 		super(material, EFFECTIVE_ON);
 		this.attackDamage = 4f;
         this.attackSpeed = -1.5f;
+        this.setContainerItem(this);
 	}
+	
 	//extra damage to animals.
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 		tooltip.add(TextFormatting.GOLD+"Durability: "+this.getMaxDamage(stack));
-		tooltip.add(TextFormatting.GOLD+"Important crafting tool");
-		tooltip.add(TextFormatting.GOLD+"Does double damage to animals");
 	}
 	
 	@Override
@@ -44,6 +45,13 @@ public class PrimitiveKnife extends ItemTool{
         stack.damageItem(1, attacker);
         return true;
     }
+	
+	
+	@Override
+	public ItemStack getContainerItem(ItemStack itemStack) {
+		itemStack.setItemDamage(itemStack.getItemDamage()+1);
+		return itemStack.copy();
+	}
 	
 	@Override
 	public boolean canHarvestBlock(IBlockState blockIn)
@@ -58,6 +66,12 @@ public class PrimitiveKnife extends ItemTool{
 
         return EFFECTIVE_ON.contains(block)? 1.0F:0.2F;
     }
+	
+	@Override
+	  public boolean hasContainerItem(ItemStack stack)
+	  {
+	    return stack.getItemDamage() < getMaxDamage(stack);
+	  }
 	
 	@Override
 	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving)

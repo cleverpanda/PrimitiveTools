@@ -1,0 +1,17 @@
+{  
+   "type":"forge:ore_shapeless",
+   "ingredients":[  
+      {  
+       "type":"forge:ore_dict",
+	"ore":"plankWood"
+      },
+    {
+       "type":"forge:ore_dict",
+	"ore":"toolKnife"
+    }
+   ],
+   "result":{  
+      "item":"minecraft:stick",
+      "count":2
+   }
+}

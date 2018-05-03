@@ -1,5 +1,6 @@
 package panda.primitivetools;
 
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import net.minecraft.creativetab.CreativeTabs;
@@ -16,8 +17,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.oredict.OreDictionary;
-import panda.primitivetools.init.ModRecipes;
 import panda.primitivetools.common.entity.EntitySpear;
 import panda.primitivetools.init.ModItems;
 import panda.primitivetools.proxy.CommonProxy;
@@ -25,7 +24,7 @@ import panda.primitivetools.proxy.CommonProxy;
 @Mod(modid = PrimitiveTools.MODID, name = PrimitiveTools.NAME, version = PrimitiveTools.VERSION)
 public class PrimitiveTools {
 	public static final String MODID = "primitivetools";
-	public static final String VERSION = "0.22.0";
+	public static final String VERSION = "1.1.0";
 	public static final String NAME = "Primitive Tools";
 	
 
@@ -35,14 +34,11 @@ public class PrimitiveTools {
 	@SidedProxy(clientSide = "panda.primitivetools.proxy.ClientProxy",serverSide = "panda.primitivetools.proxy.ServerProxy")
 	public static CommonProxy proxy;
 
-	public static Logger logger;
+	public static Logger logger = LogManager.getLogger(MODID);
 
 	@EventHandler
 	public void preinit(FMLPreInitializationEvent event){
 		Materials.init();
-		logger = event.getModLog();
-		ModRecipes.register();
-		
 	}
 	
 	@EventHandler

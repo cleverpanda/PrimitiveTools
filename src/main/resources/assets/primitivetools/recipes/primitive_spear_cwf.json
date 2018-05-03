@@ -6,10 +6,11 @@
     "BH",
     "SB"
   ],
-  "type": "minecraft:crafting_shaped",
+  "type": "forge:ore_shaped",
   "key": {
     "H": {
-      "item": "primitivetools:flint_point"
+       "type":"forge:ore_dict",
+	   "ore":"pointFlint"
     },
 	"S": {
       "item": "minecraft:stick"

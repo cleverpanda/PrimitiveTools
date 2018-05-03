@@ -1,5 +1,5 @@
 {  
-   "type":"primitivetools:shapeless_knife",
+   "type":"forge:ore_shapeless",
    "ingredients":[  
       {
        "ore": "treeSapling",
@@ -7,8 +7,7 @@
     },
     {
        "ore": "toolKnife",
-	   "type": "forge:ore_dict",
-	   "data":32767
+	"type": "forge:ore_dict"
     }
    ],
    "result":{  

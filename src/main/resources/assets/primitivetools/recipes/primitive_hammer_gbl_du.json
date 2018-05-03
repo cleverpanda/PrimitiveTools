@@ -1,0 +1,28 @@
+{"conditions": [
+    {
+        "type": "forge:mod_loaded",
+        "modid": "divergentunderground"
+    }
+  ],
+  "result": {
+    "item": "primitivetools:primitive_hammer_gbl"
+  },
+  "pattern": [
+    "SB",
+    "HS"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "S": {
+       "type":"forge:ore_dict",
+		"ore":"rockGranite"
+    },
+	"H": {
+      "item": "minecraft:bone"
+    },
+	"B": {
+       "type":"forge:ore_dict",
+		"ore":"leatherStrip"
+    }
+  }
+}

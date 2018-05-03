@@ -34,12 +34,14 @@ public class PrimitiveSpade extends ItemSpade{
 	    container.attemptDamageItem(1, Minecraft.getMinecraft().world.rand, null);
 	    return container;
 	  }
+	
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 		tooltip.add(TextFormatting.GOLD+"Durability: "+this.getMaxDamage(stack));
 	}
 	
+	@Override
 	public float getDestroySpeed(ItemStack stack, IBlockState state)
     {
         Material material = state.getMaterial();

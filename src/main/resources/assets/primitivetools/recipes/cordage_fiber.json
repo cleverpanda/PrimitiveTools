@@ -4,14 +4,17 @@
    },
    "ingredients":[  
       {  
-         "item":"primitivetools:plant_fiber"
+         "type":"forge:ore_dict",
+	"ore":"materialFiber"
       },
       {  
-         "item":"primitivetools:plant_fiber"
+         "type":"forge:ore_dict",
+	"ore":"materialFiber"
       },
       {  
-         "item":"primitivetools:plant_fiber"
+         "type":"forge:ore_dict",
+	"ore":"materialFiber"
       }
    ],
-   "type":"minecraft:crafting_shapeless"
+   "type":"forge:ore_shapeless"
 }

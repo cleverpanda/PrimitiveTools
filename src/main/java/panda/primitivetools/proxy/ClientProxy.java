@@ -97,7 +97,6 @@ public class ClientProxy extends CommonProxy {
     }
 
 	private static void registerItemModel(Item item) {
-		//PrimitiveTools.logger.info(item.getUnlocalizedName());
 		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
 	}
 

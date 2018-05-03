@@ -2,8 +2,6 @@ package panda.primitivetools.common.item;
 
 import java.util.List;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -12,8 +10,6 @@ import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class PrimitiveHatchet extends ItemAxe{
 	
@@ -22,6 +18,7 @@ public class PrimitiveHatchet extends ItemAxe{
 	    super(material, material.getAttackDamage(), material.getEfficiency());
 	    this.attackDamage = 7;
 	    this.attackSpeed = -3.2f;
+	    this.setContainerItem(this);
 	  }
 	
 	@Override

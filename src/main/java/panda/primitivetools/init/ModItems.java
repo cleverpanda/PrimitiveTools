@@ -2,8 +2,6 @@ package panda.primitivetools.init;
 
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
-
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -25,9 +23,6 @@ import panda.primitivetools.common.item.PrimitivePick;
 import panda.primitivetools.common.item.PrimitiveRockHammer;
 import panda.primitivetools.common.item.PrimitiveSpade;
 import panda.primitivetools.common.item.Spear;
-
-
-
 
 @EventBusSubscriber
 public final class ModItems {
@@ -52,25 +47,13 @@ public final class ModItems {
 			super.addInformation(stack, worldIn, tooltip, flagIn);
 			tooltip.add(TextFormatting.GOLD+"Right click flint on something hard");
 		}},"flint_point");
-		public static final Item LEATHER_STRIP = simply(new Item(){@Override
-			public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-			super.addInformation(stack, worldIn, tooltip, flagIn);
-			tooltip.add(TextFormatting.GOLD+"Craft leather with knife.");
-		}},"leather_strip");
-		public static final Item CORDAGE_VINE = simply(new Item(){@Override
-			public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-			super.addInformation(stack, worldIn, tooltip, flagIn);
-			tooltip.add(TextFormatting.GOLD+"Craft vines with knife. Get vines with knife");
-		}},"cordage_vine");
+		public static final Item LEATHER_STRIP = simply(new Item(),"leather_strip");
+		public static final Item CORDAGE_VINE = simply(new Item(),"cordage_vine");
 		public static final Item PLANT_FIBER = simply(new Item(),"plant_fiber");
 		public static final Item CORDAGE_FIBER = simply(new Item(),"cordage_fiber");
 		
 		public static final Item WOODEN_CLUB = simply(new ItemClub(FLINT),"wooden_club");
-		public static final Item BONE_NEEDLE = simply(new Item(){@Override
-			public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-			super.addInformation(stack, worldIn, tooltip, flagIn);
-			tooltip.add("Uncraftable");
-		}},"bone_needle");
+		public static final Item BONE_NEEDLE = simply(new Item(),"bone_needle");
 		
 
 		public static final Item PRIMITIVE_AXE_WFS = makeHatchet("cwf");
@@ -138,7 +121,7 @@ public final class ModItems {
 		}
 		
 		private static Item makeSpear(String key){
-			return makeTool(new Spear(key), "primitive_spear_",key);
+			return simply(new Spear(key), "primitive_spear_"+key);
 		}
 		
 		private static Item makeHammer(String key){

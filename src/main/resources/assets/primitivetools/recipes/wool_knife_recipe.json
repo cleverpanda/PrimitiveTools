@@ -1,0 +1,17 @@
+{  
+   "type":"forge:ore_shapeless",
+   "ingredients":[  
+      {  
+         "item":"minecraft:wool",
+	 "data":32767
+      },
+    {
+       "type":"forge:ore_dict",
+	"ore":"toolKnife"
+    }
+   ],
+   "result":{  
+      "item":"minecraft:string",
+      "count":3
+   }
+}

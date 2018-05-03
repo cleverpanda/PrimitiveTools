@@ -2,8 +2,6 @@ package panda.primitivetools.common.crafting;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 import net.minecraft.item.ItemStack;
 
@@ -13,7 +11,7 @@ public class KnappRecipe
   
   private ItemStack input;
   private ItemStack[] outputs;
-  private ItemStack output_failed;
+  private ItemStack outputFailed;
   private float hardness;
   private float failure;
   
@@ -69,7 +67,7 @@ public class KnappRecipe
   
   public ItemStack getOutputFailed()
   {
-    return this.output_failed.copy();
+    return this.outputFailed.copy();
   }
   
   public float getHardness()

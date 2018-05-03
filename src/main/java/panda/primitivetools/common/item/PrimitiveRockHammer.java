@@ -20,6 +20,7 @@ public class PrimitiveRockHammer extends ItemPickaxe{
 		super(material);
 		this.attackDamage = 5.0f;
 	    this.attackSpeed = -3.5f;
+	    this.setContainerItem(this);
 	}
 	
 	@Override
@@ -29,10 +30,22 @@ public class PrimitiveRockHammer extends ItemPickaxe{
 	}
 	
 	@Override
+	public ItemStack getContainerItem(ItemStack itemStack) {
+		itemStack.setItemDamage(itemStack.getItemDamage()+1);
+		return itemStack.copy();
+	}
+	
+	@Override
 	public boolean isBookEnchantable(ItemStack stack, ItemStack book)
     {
         return false;
     }
+	
+	@Override
+	  public boolean hasContainerItem(ItemStack stack)
+	  {
+	    return stack.getItemDamage() < getMaxDamage(stack);
+	  }
 	
 	@Override
 	public float getDestroySpeed(ItemStack stack, IBlockState state)

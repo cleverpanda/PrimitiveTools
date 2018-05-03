@@ -1,0 +1,27 @@
+{"conditions": [
+    {
+        "type": "forge:mod_loaded",
+        "modid": "divergentunderground"
+    }
+  ],
+  "result": {
+    "item": "primitivetools:primitive_hammer_dbv"
+  },
+  "pattern": [
+    "SB",
+    "HS"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "S": {
+       "type":"forge:ore_dict",
+		"ore":"rockDiorite"
+    },
+	"H": {
+      "item": "minecraft:bone"
+    },
+	"B": {
+      "item": "primitivetools:cordage_vine"
+    }
+  }
+}

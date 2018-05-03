@@ -6,13 +6,15 @@
     "PH",
 	"BS"
   ],
-  "type": "minecraft:crafting_shaped",
+  "type": "forge:ore_shaped",
   "key": {
     "P": {
-      "item": "primitivetools:flint_point"
+       "type":"forge:ore_dict",
+		"ore":"pointFlint"
     },
 	"H": {
-      "item": "primitivetools:flint_shard"
+       "type":"forge:ore_dict",
+		"ore":"shardFlint"
     },
 	"S": {
       "item": "minecraft:bone"

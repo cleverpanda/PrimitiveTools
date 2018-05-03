@@ -25,7 +25,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import panda.primitivetools.MaterialMultiplexer;
-import panda.primitivetools.PrimitiveTools;
 import panda.primitivetools.common.crafting.KnappRecipe;
 import panda.primitivetools.common.item.PrimitiveKnife;
 import panda.primitivetools.common.item.PrimitiveSpade;
@@ -37,7 +36,8 @@ public class BlockEvents {
 	private BlockEvents(){
 		throw new IllegalStateException("Utility class");
 	}
-
+	
+	//Portions of code from Primal Core. Thanks An_sar!
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public static void onPlayerInteract(PlayerInteractEvent.RightClickBlock event)
 	{
@@ -113,17 +113,18 @@ public class BlockEvents {
 			if (held != null && held.getItem() instanceof PrimitiveKnife)
 			{
 				chance -= 2;
+				for (int i = 0; i < 4; i++) {//TODO can be a config value
+					java.util.List<ItemStack> items = block.getDrops(e.getWorld(), e.getPos(), e.getState(), e.getFortuneLevel());
+					for (ItemStack item : items) {
+						e.getDrops().add(item);
+					}
+				}
 			}
 			if (rand.nextInt(chance) == 0)
 			{
 				e.getDrops().add(new ItemStack(ModItems.PLANT_FIBER));
 			}
-			for (int i = 0; i < 4; i++) {//TODO can be a config value
-				java.util.List<ItemStack> items = block.getDrops(e.getWorld(), e.getPos(), e.getState(), e.getFortuneLevel());
-				for (ItemStack item : items) {
-					e.getDrops().add(item);
-				}
-			}
+			
 			return;
 		}
 		
@@ -145,17 +146,14 @@ public class BlockEvents {
 	}
 	
 	@SubscribeEvent
-	public static void SlaughterEvent(LivingHurtEvent e)
+	public static void slaughterEvent(LivingHurtEvent e)
 	{
 		if (e.getSource() != null && e.getSource().getTrueSource() instanceof EntityPlayer) {
 			EntityPlayer player = ((EntityPlayer) e.getSource().getTrueSource());
 			if (player != null) {
 				ItemStack holding = player.inventory.getStackInSlot(player.inventory.currentItem);
-				if (!holding.isEmpty() && holding.getItem() instanceof PrimitiveKnife) {
-
-					if (e.getEntity() instanceof EntityAnimal) {
-						e.getEntityLiving().setHealth((e.getEntityLiving().getHealth()-4)<0?0:e.getEntityLiving().getHealth()-4);
-					}
+				if (!holding.isEmpty() && holding.getItem() instanceof PrimitiveKnife && e.getEntity() instanceof EntityAnimal) {
+					e.getEntityLiving().setHealth((e.getEntityLiving().getHealth()-4)<0?0:e.getEntityLiving().getHealth()-4);
 				}
 			}
 		}

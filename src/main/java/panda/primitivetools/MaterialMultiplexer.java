@@ -4,7 +4,7 @@ import com.google.common.base.Predicate;
 import javax.annotation.Nullable;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-
+//From Primal Core. Thanks An_sar!
 public final class MaterialMultiplexer
   implements Predicate<IBlockState>
 {

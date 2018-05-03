@@ -6,13 +6,15 @@
     "FB",
 	"SH"
   ],
-  "type": "minecraft:crafting_shaped",
+  "type": "forge:ore_shaped",
   "key": {
     "H": {
-      "item": "primitivetools:flint_flake"
+       "type":"forge:ore_dict",
+	   "ore":"flakeFlint"
     },
-"F": {
-      "item": "primitivetools:flint_shard"
+	"F": {
+       "type":"forge:ore_dict",
+	   "ore":"shardFlint"
     },
 	"S": {
       "item": "minecraft:stick"

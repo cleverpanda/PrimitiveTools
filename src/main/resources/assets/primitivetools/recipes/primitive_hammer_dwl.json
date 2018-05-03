@@ -3,7 +3,7 @@
       "type": "forge:not",
       "value": {
         "type": "forge:mod_loaded",
-        "modid": "divergentmining_base"
+        "modid": "divergentunderground"
       }
     }
   ],
@@ -14,7 +14,7 @@
     "SB",
     "HS"
   ],
-  "type": "minecraft:crafting_shaped",
+  "type": "forge:ore_shaped",
   "key": {
     "S": {
       "item": "minecraft:stone",
@@ -24,7 +24,8 @@
       "item": "minecraft:stick"
     },
 	"B": {
-      "item": "primitivetools:leather_strip"
+       "type":"forge:ore_dict",
+		"ore":"leatherStrip"
     }
   }
 }

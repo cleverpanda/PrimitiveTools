@@ -1,13 +1,4 @@
-{  
-  "conditions": [
-    {
-      "type": "forge:not",
-      "value": {
-        "type": "forge:mod_loaded",
-        "modid": "leatherworks"
-      }
-    }
-  ],
+{
   "result": {
     "item": "primitivetools:primitive_pick_cwl"
   },
@@ -15,19 +6,22 @@
     "FB",
 	"SH"
   ],
-  "type": "minecraft:crafting_shaped",
+  "type": "forge:ore_shaped",
   "key": {
     "H": {
-      "item": "primitivetools:flint_flake"
+       "type":"forge:ore_dict",
+	   "ore":"flakeFlint"
     },
-"F": {
-      "item": "primitivetools:flint_shard"
+	"F": {
+       "type":"forge:ore_dict",
+	   "ore":"shardFlint"
     },
 	"S": {
       "item": "minecraft:stick"
     },
 	"B": {
-      "item": "primitivetools:leather_strip"
+       "type":"forge:ore_dict",
+	   "ore":"leatherStrip"
     }
   }
 }

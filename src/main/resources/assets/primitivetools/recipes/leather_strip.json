@@ -1,0 +1,25 @@
+{    
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "leatherworks"
+      }
+    }
+  ],
+   "type":"forge:ore_shapeless",
+   "ingredients":[  
+      {  
+         "item":"minecraft:leather"
+      },
+      {  
+       "type":"forge:ore_dict",
+	"ore":"toolKnife"
+      }
+   ],
+   "result":{  
+      "item":"primitivetools:leather_strip",
+      "count":4
+   }
+}

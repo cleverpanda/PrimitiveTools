@@ -1,0 +1,16 @@
+{  
+   "type":"forge:ore_shapeless",
+   "ingredients":[  
+      {  
+	"item":"minecraft:bone"
+      },
+    {
+       "type":"forge:ore_dict",
+	"ore":"toolKnife"
+    }
+   ],
+   "result":{  
+      "item":"primitivetools:bone_needle",
+      "count":1
+   }
+}

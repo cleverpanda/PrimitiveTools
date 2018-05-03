@@ -3,26 +3,20 @@ package panda.primitivetools.init;
 import java.util.Iterator;
 import java.util.Map;
 
-import net.minecraft.block.Block;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 import panda.primitivetools.PrimitiveTools;
 import panda.primitivetools.common.crafting.FakeRecipe;
 import panda.primitivetools.common.crafting.KnappRecipe;
-import panda.primitivetools.common.crafting.RecipeKnife;
-import panda.primitivetools.common.crafting.RepairRecipe;
 
 @EventBusSubscriber
 public class ModRecipes {
@@ -31,15 +25,12 @@ public class ModRecipes {
 		PrimitiveTools.logger.info("Registering Recipes");
 	}
 	
-	public static void register() {
-		removeVanillaRecipes();
-		KnappRecipe.addRecipe(new ItemStack(Items.FLINT), new ItemStack[]{new ItemStack(ModItems.FLINT_FLAKE),new ItemStack(ModItems.FLINT_SHARD),new ItemStack(ModItems.FLINT_POINT)}, 1.5F, 0.45F);
-		//ForgeRegistries.RECIPES.register(new RepairRecipe(new ItemStack(ModItems.PRIMITIVE_AXE),40, ModItems.FLINT_FLAKE));
-	}
-	
 	@SubscribeEvent
 	public static void register(RegistryEvent.Register<IRecipe> event) {
 		IForgeRegistry<IRecipe> registry = event.getRegistry();
+		
+		removeVanillaRecipes();
+		KnappRecipe.addRecipe(new ItemStack(Items.FLINT), new ItemStack[]{new ItemStack(ModItems.FLINT_FLAKE),new ItemStack(ModItems.FLINT_SHARD),new ItemStack(ModItems.FLINT_POINT)}, 1.5F, 0.45F);
 	}
 
 	public static void removeVanillaRecipes()
@@ -78,18 +69,5 @@ public class ModRecipes {
 				entries.remove();
 			}
 		}
-	}
-
-	public static void addOredicts(String[] oreDictEntries, Block name) {
-		addOredicts(oreDictEntries, new ItemStack(name));
-	}
-
-	public static void addOredicts(String[] oreDictEntries, Item name) {
-		addOredicts(oreDictEntries, new ItemStack(name));
-	}
-
-	public static void addOredicts(String[] oreDictEntries, ItemStack itemStackName) {
-		for (final String oreDictEntry : oreDictEntries)
-			OreDictionary.registerOre(oreDictEntry, itemStackName);
 	}
 }
