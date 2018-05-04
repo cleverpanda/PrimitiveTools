@@ -32,31 +32,19 @@ import panda.primitivetools.init.ModItems;
 
 public class Spear extends Item{
 
-	private static String key = "";
-	public Spear(String type)
+	public Spear()
 	{
-		key = type;
-		super.setMaxStackSize(8);
+		this.setMaxStackSize(1);
+		this.setMaxDamage(24);
+		Spear spear = this;
 		this.addPropertyOverride(new ResourceLocation(PrimitiveTools.MODID, "pull"), new IItemPropertyGetter()
 		{
 			@SideOnly(Side.CLIENT)
 			public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
 			{
-				return entityIn == null ? 0.0F : (entityIn.getActiveItemStack().getItem() != chooseItem(key) ? 0.0F : (float) (stack.getMaxItemUseDuration() - entityIn.getItemInUseCount()) / 20.0F);
+				return entityIn == null ? 0.0F : (entityIn.getActiveItemStack().getItem() != spear ? 0.0F : (float) (stack.getMaxItemUseDuration() - entityIn.getItemInUseCount()) / 20.0F);
 			}
 		});
-	}
-	
-	private Item chooseItem(String key){
-		switch(key){
-		case "cwl":
-			return ModItems.SPEAR_CWL;
-		case "cwf":
-			return ModItems.SPEAR_CWF;
-		case "cwv":
-			return ModItems.SPEAR_CWV;
-		}
-		return Items.AIR;
 	}
 	
 	@Override
@@ -81,7 +69,8 @@ public class Spear extends Item{
 				{
 					if(!worldIn.isRemote)
 					{
-						EntitySpear entitySpear = new EntitySpear(worldIn, entityplayer,key);
+						EntitySpear entitySpear = new EntitySpear(worldIn, entityplayer);
+						entitySpear.setItem(stack);
 						entitySpear.setAim(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 1.0F, f * 3.0F, 1.0F);
 
 						stack.damageItem(1, entityplayer);

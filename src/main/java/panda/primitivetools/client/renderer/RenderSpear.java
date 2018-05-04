@@ -6,10 +6,13 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import panda.primitivetools.PrimitiveTools;
 import panda.primitivetools.common.entity.EntitySpear;
+import panda.primitivetools.init.ModItems;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 public class RenderSpear extends Render<EntitySpear>
@@ -39,13 +42,7 @@ public class RenderSpear extends Render<EntitySpear>
 		Tessellator tessellator = Tessellator.getInstance();
 		BufferBuilder vertexbuffer = tessellator.getBuffer();
 		GlStateManager.enableRescaleNormal();
-		float f9 = entity.arrowShake - partialTicks;
 
-		if(f9 > 0.0F)
-		{
-			float f10 = -MathHelper.sin(f9 * 3.0F) * f9;
-			GlStateManager.rotate(f10, 0.0F, 0.0F, 1.0F);
-		}
 
 		//GlStateManager.rotate(45.0F, 1.0F, 0.0F, 0.0F);
 		//GlStateManager.rotate(45.0F, 0.0F, 01.0F, 0.0F);
@@ -130,9 +127,11 @@ public class RenderSpear extends Render<EntitySpear>
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(EntitySpear entity)
-	{
-		return entity.texture;
+	protected ResourceLocation getEntityTexture(EntitySpear entity){
+		String name = entity.getItem().getItem().getRegistryName().getResourcePath();
+		String key = name.substring(Math.max(name.length() - 3, 0));;
+	
+		return new ResourceLocation(PrimitiveTools.MODID, "textures/items/spears/primitive_spear_"+key+"_large.png");
 	}
 	
 	public static class Factory implements IRenderFactory<EntitySpear> {

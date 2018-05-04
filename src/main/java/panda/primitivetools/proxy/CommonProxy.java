@@ -62,7 +62,6 @@ public class CommonProxy {
 	}
     
     
-    
     private void registerHatchet(Item item){
     	OreDictionary.registerOre("toolHatchet",new ItemStack(item,1,OreDictionary.WILDCARD_VALUE));
     }

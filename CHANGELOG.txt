@@ -1,3 +1,6 @@
+1.1.1
+leather sheet to strip recipe
+
 1.1.0
 Added Ore dict entries for all the things!
 Added crafting recipe for bone needle

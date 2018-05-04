@@ -121,7 +121,7 @@ public final class ModItems {
 		}
 		
 		private static Item makeSpear(String key){
-			return simply(new Spear(key), "primitive_spear_"+key);
+			return simply(new Spear(), "primitive_spear_"+key);
 		}
 		
 		private static Item makeHammer(String key){

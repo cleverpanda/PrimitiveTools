@@ -21,11 +21,15 @@ import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.entity.projectile.EntityPotion;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.network.play.server.SPacketChangeGameState;
 import net.minecraft.network.play.server.SPacketCollectItem;
 import net.minecraft.util.DamageSource;
@@ -56,7 +60,9 @@ public class EntitySpear extends Entity
 			return e.canBeCollidedWith();
 		}
 	});
-
+	
+	private static final DataParameter<ItemStack> ITEM = EntityDataManager.<ItemStack>createKey(EntitySpear.class, DataSerializers.ITEM_STACK);
+	
 	protected int xTile;
 	protected int yTile;
 	protected int zTile;
@@ -64,18 +70,12 @@ public class EntitySpear extends Entity
 	protected int inData;
 	protected boolean inGround;
 	protected int timeInGround;
-	/** Seems to be some sort of timer for animating an arrow. */
-	public int arrowShake;
+
 	/** The owner of this arrow. */
 	public Entity shootingEntity;
 	protected int ticksInGround;
 	protected int ticksInAir;
 	protected double damage = 0;
-
-	private Block item;
-	private String type = "";
-
-	public ResourceLocation texture = new ResourceLocation(PrimitiveTools.MODID, "textures/items/spears/primitive_spear_"+"cwv"+"_large.png");
 
 	public EntitySpear(World worldIn)
 	{
@@ -86,20 +86,34 @@ public class EntitySpear extends Entity
 		this.setSize(0.25F, 0.25F);
 	}
 
-	public EntitySpear(World worldIn, double x, double y, double z,String key)
+	public EntitySpear(World worldIn, double x, double y, double z)
 	{
 		this(worldIn);
 		this.setPosition(x, y, z);
-		texture = new ResourceLocation(PrimitiveTools.MODID, "textures/items/spears/primitive_spear_"+key+"_large.png");
 	}
 
-	public EntitySpear(World worldIn, EntityLivingBase throwerIn,String key)
+	public EntitySpear(World worldIn, EntityLivingBase throwerIn)
 	{
-		this(worldIn, throwerIn.posX, throwerIn.posY + (double) throwerIn.getEyeHeight() - 0.1D, throwerIn.posZ, key);
+		this(worldIn, throwerIn.posX, throwerIn.posY + (double) throwerIn.getEyeHeight() - 0.1D, throwerIn.posZ);
 		this.shootingEntity = throwerIn;
-		
-		type = key;
 	}
+	
+	@Override
+	protected void entityInit()
+    {
+        this.getDataManager().register(ITEM, ItemStack.EMPTY);
+    }
+	
+	public ItemStack getItem()
+    {
+       return this.getDataManager().get(ITEM);
+    }
+	
+    public void setItem(ItemStack stack)
+    {
+        this.getDataManager().set(ITEM, new ItemStack(stack.getItem(),1));
+        this.getDataManager().setDirty(ITEM);
+    }
 
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -218,11 +232,6 @@ public class EntitySpear extends Entity
 			}
 		}
 
-		if(this.arrowShake > 0)
-		{
-			--this.arrowShake;
-		}
-
 		if(this.inGround)
 		{
 			int j = block.getMetaFromState(iblockstate);
@@ -240,8 +249,9 @@ public class EntitySpear extends Entity
 			{
 				++this.ticksInGround;
 
-				if(this.ticksInGround >= 6000)
+				if(this.ticksInGround >= 1200 && !this.world.isRemote && this.world.getGameRules().getBoolean("doEntityDrops"))
 				{
+					this.entityDropItem(getItem(), 0.1F);
 					this.setDead();
 				}
 			}
@@ -397,16 +407,9 @@ public class EntitySpear extends Entity
 			}
 			else
 			{
-				this.motionX *= -0.05D;
-				this.motionY *= -0.05D;
-				this.motionZ *= -0.05D;
-				this.rotationYaw += 180.0F;
-				this.prevRotationYaw += 180.0F;
-				this.ticksInAir = 0;
-
-				if(!this.world.isRemote && this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ < 0.001D)
+				if(!this.world.isRemote)
 				{
-					this.entityDropItem(new ItemStack(this.item), 0.1F);
+					this.entityDropItem(getItem(), 0.1F);
 					this.setDead();
 				}
 			}
@@ -430,7 +433,7 @@ public class EntitySpear extends Entity
 			this.playSound(SoundEvents.ENTITY_ARROW_HIT, 0.5F, 0.5F);
 			this.playSound(iblockstate.getBlock().getSoundType(iblockstate, world, blockpos, null).getBreakSound(), 1.5F, 1.5F);
 			this.inGround = true;
-			this.arrowShake = 3;
+
 
 			if(iblockstate.getMaterial() != Material.AIR)
 			{
@@ -492,9 +495,16 @@ public class EntitySpear extends Entity
 		ResourceLocation resourcelocation = Block.REGISTRY.getNameForObject(this.inTile);
 		compound.setString("inTile", resourcelocation == null ? "" : resourcelocation.toString());
 		compound.setByte("inData", (byte) this.inData);
-		compound.setByte("shake", (byte) this.arrowShake);
 		compound.setByte("inGround", (byte) (this.inGround ? 1 : 0));
 		compound.setDouble("damage", this.damage);
+		
+		ItemStack itemstack = this.getItem();
+        if (!itemstack.isEmpty())
+        {
+            compound.setTag("Spear", itemstack.writeToNBT(new NBTTagCompound()));
+        }else{
+        	PrimitiveTools.logger.info(itemstack);
+        }
 	}
 
 	public void readEntityFromNBT(NBTTagCompound compound)
@@ -514,13 +524,14 @@ public class EntitySpear extends Entity
 		}
 
 		this.inData = compound.getByte("inData") & 255;
-		this.arrowShake = compound.getByte("shake") & 255;
 		this.inGround = compound.getByte("inGround") == 1;
 
 		if(compound.hasKey("damage", 99))
 		{
 			this.damage = compound.getDouble("damage");
 		}
+		
+        this.setItem(new ItemStack(compound.getCompoundTag("spear")));
 	}
 
 	@Override
@@ -531,30 +542,20 @@ public class EntitySpear extends Entity
 		{
 			if(entityIn.capabilities.isCreativeMode)
 			{
+				this.entityDropItem(getItem(), 0.1F);
 				this.setDead();
 			}
-			else if(entityIn.inventory.addItemStackToInventory(new ItemStack(chooseItem(type))))
+			else if(entityIn.inventory.addItemStackToInventory(getItem()))
 			{
 				world.playSound(entityIn, entityIn.getPosition(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 1F, 1F);
 				
 				EntityTracker entitytracker = ((WorldServer)this.world).getEntityTracker();
 	             entitytracker.sendToTracking(entityIn, new SPacketCollectItem(entityIn.getEntityId(), this.getEntityId(), 1));
-				this.setDead();
-			}
-		}
-	}
 
-
-	private Item chooseItem(String key){
-		switch(key){
-		case "cwl":
-			return ModItems.SPEAR_CWL;
-		case "cwf":
-			return ModItems.SPEAR_CWF;
-		case "cwv":
-			return ModItems.SPEAR_CWV;
+	             this.setDead();
+			}else
+				this.entityDropItem(getItem(), 0.1F);
 		}
-		return Items.AIR;
 	}
 	
 	@Override
@@ -598,9 +599,4 @@ public class EntitySpear extends Entity
 		return this.inGround;
 	}
 
-	@Override
-	protected void entityInit() {
-		// TODO Auto-generated method stub
-		
-	}
 }
