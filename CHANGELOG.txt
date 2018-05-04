@@ -1,3 +1,9 @@
+1.1.3
+fixed rendering for spear types
+made spears unstackable
+spears drop when they hit something instead of disappear
+fixed old dev texture
+
 1.1.1
 leather sheet to strip recipe
 
