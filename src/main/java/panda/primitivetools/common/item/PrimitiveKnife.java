@@ -50,7 +50,10 @@ public class PrimitiveKnife extends ItemTool{
 	@Override
 	public ItemStack getContainerItem(ItemStack itemStack) {
 		itemStack.setItemDamage(itemStack.getItemDamage()+1);
+		if(itemStack.getItemDamage() < getMaxDamage(itemStack)){
 		return itemStack.copy();
+		}
+		return ItemStack.EMPTY;
 	}
 	
 	@Override

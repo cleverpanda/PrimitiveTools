@@ -3,7 +3,7 @@
         "type": "minecraft:item_exists",
         "item": "leatherworks:crafting_leather_scraped"
     }],
-  "type":"forge:ore_shapeless",
+  "type":"primitivetools:shapeless_knife",
 
   "ingredients": [
         {

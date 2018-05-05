@@ -1,0 +1,5 @@
+{
+  "recipes": {
+    "shapeless_knife": "panda.primitivetools.common.crafting.RecipeShapelessKnife"
+  }
+}

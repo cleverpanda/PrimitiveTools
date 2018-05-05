@@ -1,5 +1,5 @@
 {  
-   "type":"forge:ore_shapeless",
+   "type":"primitivetools:shapeless_knife",
    "ingredients":[  
       {  
        "type":"forge:ore_dict",

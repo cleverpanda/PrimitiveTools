@@ -5,7 +5,7 @@
       "modid": "leatherworks"
     }
   ],
-   "type":"forge:ore_shapeless",
+   "type":"primitivetools:shapeless_knife",
    "ingredients":[  
       {  
          "item":"minecraft:leather"

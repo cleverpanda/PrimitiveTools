@@ -8,7 +8,7 @@
       }
     }
   ],
-   "type":"minecraft:crafting_shapeless",
+   "type":"primitivetools:shapeless_knife",
    "ingredients":[  
       {  
          "item":"minecraft:leather"
