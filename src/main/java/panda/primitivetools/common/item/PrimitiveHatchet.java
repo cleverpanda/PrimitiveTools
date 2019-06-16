@@ -40,7 +40,7 @@ public class PrimitiveHatchet extends ItemAxe{
 	public float getDestroySpeed(ItemStack stack, IBlockState state)
     {
         Material material = state.getMaterial();
-        return material != Material.WOOD && material != Material.GOURD && material != Material.PLANTS && material != Material.VINE ? 0.2f*ConfigPrimitiveTools.toolSpeedModifier*ConfigPrimitiveTools.HatchetSpeedModifier : 3f*ConfigPrimitiveTools.toolSpeedModifier*ConfigPrimitiveTools.HatchetSpeedModifier;
+        return material != Material.WOOD && material != Material.GOURD && material != Material.PLANTS && material != Material.VINE ? (float)(0.2f*ConfigPrimitiveTools.toolSpeed.toolSpeedModifier*ConfigPrimitiveTools.toolSpeed.HatchetSpeedModifier) : (float)(3f*ConfigPrimitiveTools.toolSpeed.toolSpeedModifier*ConfigPrimitiveTools.toolSpeed.HatchetSpeedModifier);
     }
 	
 	@Override

@@ -41,8 +41,6 @@ public class PrimitiveTools {
 	@EventHandler
 	public void preinit(FMLPreInitializationEvent event){
 		Materials.init();
-		config = new Configuration(event.getSuggestedConfigurationFile());
-		ConfigPrimitiveTools.load(config);
 	}
 	
 	@EventHandler

@@ -31,7 +31,7 @@ public class ModRecipes {
 		IForgeRegistry<IRecipe> registry = event.getRegistry();
 		
 		removeVanillaRecipes();
-		KnappRecipe.addRecipe(new ItemStack(Items.FLINT), new ItemStack[]{new ItemStack(ModItems.FLINT_FLAKE),new ItemStack(ModItems.FLINT_SHARD),new ItemStack(ModItems.FLINT_POINT)}, 1.5F, ConfigPrimitiveTools.knappingModifier);
+		KnappRecipe.addRecipe(new ItemStack(Items.FLINT), new ItemStack[]{new ItemStack(ModItems.FLINT_FLAKE),new ItemStack(ModItems.FLINT_SHARD),new ItemStack(ModItems.FLINT_POINT)}, 1.5F, (float)ConfigPrimitiveTools.chanceModifiers.knappingModifier);
 	}
 
 	public static void removeVanillaRecipes()

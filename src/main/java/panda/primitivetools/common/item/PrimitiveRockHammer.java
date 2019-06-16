@@ -52,7 +52,7 @@ public class PrimitiveRockHammer extends ItemPickaxe{
 	public float getDestroySpeed(ItemStack stack, IBlockState state)
     {
         Material material = state.getMaterial();
-        return material != Material.IRON && material != Material.ICE && material != Material.CIRCUITS && material != Material.CORAL &&  material != Material.ANVIL && material != Material.ROCK && material != Material.GLASS? 0.2f*ConfigPrimitiveTools.toolSpeedModifier*ConfigPrimitiveTools.HammerSpeedModifier : 3.0f*ConfigPrimitiveTools.toolSpeedModifier*ConfigPrimitiveTools.HammerSpeedModifier;
+        return material != Material.IRON && material != Material.ICE && material != Material.CIRCUITS && material != Material.CORAL &&  material != Material.ANVIL && material != Material.ROCK && material != Material.GLASS? (float)(0.2f*ConfigPrimitiveTools.toolSpeed.toolSpeedModifier*ConfigPrimitiveTools.toolSpeed.HammerSpeedModifier) : (float)(3.0f*ConfigPrimitiveTools.toolSpeed.toolSpeedModifier*ConfigPrimitiveTools.toolSpeed.HammerSpeedModifier);
     }
 	
 	//Handle rock crushing

@@ -68,7 +68,7 @@ public class PrimitiveKnife extends ItemTool{
     {
         Block block = state.getBlock();
 
-        return EFFECTIVE_ON.contains(block)? 1.0F*ConfigPrimitiveTools.toolSpeedModifier*ConfigPrimitiveTools.KnifeSpeedModifier:0.2F*ConfigPrimitiveTools.toolSpeedModifier*ConfigPrimitiveTools.KnifeSpeedModifier;
+        return EFFECTIVE_ON.contains(block)? (float)(1.0F*ConfigPrimitiveTools.toolSpeed.toolSpeedModifier*ConfigPrimitiveTools.toolSpeed.KnifeSpeedModifier):(float)(0.2F*ConfigPrimitiveTools.toolSpeed.toolSpeedModifier*ConfigPrimitiveTools.toolSpeed.KnifeSpeedModifier);
     }
 	
 	@Override

@@ -52,7 +52,7 @@ public class PrimitivePick extends ItemPickaxe{
 	public float getDestroySpeed(ItemStack stack, IBlockState state)
     {
         Material material = state.getMaterial();
-        return material != Material.IRON && material != Material.CIRCUITS && material != Material.CORAL &&  material != Material.ANVIL && material != Material.ROCK ? 0.2f*ConfigPrimitiveTools.toolSpeedModifier*ConfigPrimitiveTools.PickSpeedModifier : 3.0f*ConfigPrimitiveTools.toolSpeedModifier*ConfigPrimitiveTools.PickSpeedModifier;
+        return material != Material.IRON && material != Material.CIRCUITS && material != Material.CORAL &&  material != Material.ANVIL && material != Material.ROCK ? (float)(0.2f*ConfigPrimitiveTools.toolSpeed.toolSpeedModifier*ConfigPrimitiveTools.toolSpeed.PickSpeedModifier) : (float)(3.0f*ConfigPrimitiveTools.toolSpeed.toolSpeedModifier*ConfigPrimitiveTools.toolSpeed.PickSpeedModifier);
     }
 	
 	@Override
