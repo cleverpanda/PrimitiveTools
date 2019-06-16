@@ -58,7 +58,6 @@ public class CommonProxy {
     	registerHammer(ModItems.PRIMITIVE_HAMMER_GBF);
     	registerHammer(ModItems.PRIMITIVE_HAMMER_GBV);
     	registerHammer(ModItems.PRIMITIVE_HAMMER_GBL);
-
 	}
     
     

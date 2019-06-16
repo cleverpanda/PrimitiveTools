@@ -149,7 +149,7 @@ public final class ModItems {
 		}
 		
 		private static Item simply(Item item, String name) { 
-			return item.setRegistryName(PrimitiveTools.MODID, name).setUnlocalizedName(PrimitiveTools.MODID + "." + name).setCreativeTab(PrimitiveTools.Tab);
+			return item.setRegistryName(PrimitiveTools.MODID, name).setTranslationKey(PrimitiveTools.MODID + "." + name).setCreativeTab(PrimitiveTools.Tab);
 		}
 
 

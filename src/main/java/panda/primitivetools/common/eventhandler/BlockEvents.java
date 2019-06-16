@@ -24,6 +24,7 @@ import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import panda.primitivetools.ConfigPrimitiveTools;
 import panda.primitivetools.MaterialMultiplexer;
 import panda.primitivetools.common.crafting.KnappRecipe;
 import panda.primitivetools.common.item.PrimitiveKnife;
@@ -100,19 +101,26 @@ public class BlockEvents {
 		Random rand = player.world.rand;
 
 		if (block == Blocks.VINE && !e.isSilkTouching() && held != null &&
-				held.getItem() instanceof PrimitiveKnife && rand.nextInt(4) == 0)
-		{
-			e.getDrops().add(new ItemStack(Blocks.VINE));
+				held.getItem() instanceof PrimitiveKnife){
+			
+			if(ConfigPrimitiveTools.vineDropChance != 0 &&  rand.nextInt(ConfigPrimitiveTools.vineDropChance) == 0) {
+				e.getDrops().add(new ItemStack(Blocks.VINE));
+			}
 			return;
 		}
 
 
 		if ((block == Blocks.TALLGRASS || block == Blocks.DOUBLE_PLANT) && !e.isSilkTouching())
 		{
-			int chance = 5;
+			int chance = ConfigPrimitiveTools.fiberDropChance;
+			
+			if(chance == 0) {
+				return;
+			}
+			
 			if (held != null && held.getItem() instanceof PrimitiveKnife)
 			{
-				chance -= 2;
+				chance -= chance*0.4f;
 				for (int i = 0; i < 4; i++) {//TODO can be a config value
 					java.util.List<ItemStack> items = block.getDrops(e.getWorld(), e.getPos(), e.getState(), e.getFortuneLevel());
 					for (ItemStack item : items) {
@@ -128,13 +136,36 @@ public class BlockEvents {
 			return;
 		}
 		
-		if ((block == Blocks.SAND || block == Blocks.GRAVEL) && !e.isSilkTouching())
+		if (block == Blocks.SAND && !e.isSilkTouching())
 		{
-			int chance = 8;
+			int chance = ConfigPrimitiveTools.flintSandDropChance;
+			if(chance == 0) {
+				return;
+			}
 			
 			if (held != null && (held.getItem() instanceof PrimitiveSpade || held.getItem() instanceof ItemSpade))
 			{
-				chance -= 3;
+				chance -= chance*0.375f;
+			}
+			
+			if (rand.nextInt(chance) == 0)
+			{
+				e.getDrops().add(new ItemStack(Items.FLINT));
+			}
+			return;
+		}
+		
+		if (block == Blocks.GRAVEL && !e.isSilkTouching())
+		{
+			int chance = ConfigPrimitiveTools.flintGravelDropChance;
+			
+			if(chance == 0) {
+				return;
+			}
+			
+			if (held != null && (held.getItem() instanceof PrimitiveSpade || held.getItem() instanceof ItemSpade))
+			{
+				chance -= chance*0.375f;
 			}
 			
 			if (rand.nextInt(chance) == 0)

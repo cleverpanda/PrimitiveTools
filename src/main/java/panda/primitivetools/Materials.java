@@ -14,10 +14,10 @@ public class Materials {
 		materialslist.put('l', 3.2f);
 		
 		//regular tool heads
-		materialslist.put('c', 15f);
+		materialslist.put('c', 15f);//c = chert = flint
 		
 		//hammer materials
-		materialslist.put('s', 8f); //c = chert = flint
+		materialslist.put('s', 8f); 
 		materialslist.put('d', 18f);
 		materialslist.put('g', 26f);
 	}

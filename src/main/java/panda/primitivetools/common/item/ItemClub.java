@@ -98,4 +98,10 @@ public class ItemClub extends Item{
 
         return multimap;
     }
+	
+	@Override
+	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
+    {
+        return false;
+    }
 }

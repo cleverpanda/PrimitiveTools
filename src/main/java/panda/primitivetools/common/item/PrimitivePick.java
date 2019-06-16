@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import panda.primitivetools.ConfigPrimitiveTools;
 
 public class PrimitivePick extends ItemPickaxe{
 	
@@ -51,6 +52,12 @@ public class PrimitivePick extends ItemPickaxe{
 	public float getDestroySpeed(ItemStack stack, IBlockState state)
     {
         Material material = state.getMaterial();
-        return material != Material.IRON && material != Material.CIRCUITS && material != Material.CORAL &&  material != Material.ANVIL && material != Material.ROCK ? 0.2f : 3.0f;
+        return material != Material.IRON && material != Material.CIRCUITS && material != Material.CORAL &&  material != Material.ANVIL && material != Material.ROCK ? 0.2f*ConfigPrimitiveTools.toolSpeedModifier*ConfigPrimitiveTools.PickSpeedModifier : 3.0f*ConfigPrimitiveTools.toolSpeedModifier*ConfigPrimitiveTools.PickSpeedModifier;
+    }
+	
+	@Override
+	public boolean isRepairable()
+    {
+		return false;
     }
 }

@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
+import panda.primitivetools.ConfigPrimitiveTools;
 import panda.primitivetools.PrimitiveTools;
 import panda.primitivetools.common.crafting.FakeRecipe;
 import panda.primitivetools.common.crafting.KnappRecipe;
@@ -30,7 +31,7 @@ public class ModRecipes {
 		IForgeRegistry<IRecipe> registry = event.getRegistry();
 		
 		removeVanillaRecipes();
-		KnappRecipe.addRecipe(new ItemStack(Items.FLINT), new ItemStack[]{new ItemStack(ModItems.FLINT_FLAKE),new ItemStack(ModItems.FLINT_SHARD),new ItemStack(ModItems.FLINT_POINT)}, 1.5F, 0.45F);
+		KnappRecipe.addRecipe(new ItemStack(Items.FLINT), new ItemStack[]{new ItemStack(ModItems.FLINT_FLAKE),new ItemStack(ModItems.FLINT_SHARD),new ItemStack(ModItems.FLINT_POINT)}, 1.5F, ConfigPrimitiveTools.knappingModifier);
 	}
 
 	public static void removeVanillaRecipes()

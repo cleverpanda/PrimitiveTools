@@ -50,4 +50,10 @@ public class PrimitiveHoe extends ItemHoe{
 
         return multimap;
     }
+	
+	@Override
+	public boolean isRepairable()
+    {
+		return false;
+    }
 }

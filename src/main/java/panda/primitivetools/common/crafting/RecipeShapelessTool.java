@@ -8,10 +8,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
@@ -19,25 +16,19 @@ import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.crafting.IRecipeFactory;
 import net.minecraftforge.common.crafting.JsonContext;
-import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import panda.primitivetools.PrimitiveTools;
-import panda.primitivetools.common.item.PrimitiveKnife;
-import panda.primitivetools.init.ModItems;
 
-public class RecipeShapelessKnife implements IRecipeFactory{
+
+public class RecipeShapelessTool implements IRecipeFactory{
 
 	@Override
 	public IRecipe parse(JsonContext context, JsonObject json) {
-		  //String group = JsonUtils.getString(json, "group", "");
 
 	        NonNullList<Ingredient> ings = NonNullList.create();
 	        for (JsonElement ele : JsonUtils.getJsonArray(json, "ingredients"))
@@ -47,23 +38,21 @@ public class RecipeShapelessKnife implements IRecipeFactory{
 	            throw new JsonParseException("No ingredients for shapeless recipe");
 
 	        ItemStack itemstack = CraftingHelper.getItemStack(JsonUtils.getJsonObject(json, "result"), context);
-	        return new ShapelessKnifeRecipe(itemstack, ings);
+	        return new ShapelessToolRecipe(itemstack, ings);
 
     }
 
-    public static class ShapelessKnifeRecipe extends IForgeRegistryEntry.Impl<IRecipe> implements IRecipe {
-    	/** Is the ItemStack that you get when craft the recipe. */
+    public static class ShapelessToolRecipe extends IForgeRegistryEntry.Impl<IRecipe> implements IRecipe {
+
         private final ItemStack recipeOutput;
-        /** Is a List of ItemStack that composes the recipe. */
         public final NonNullList<Ingredient> recipeItems;
         private final String group;
 
-        public ShapelessKnifeRecipe(ItemStack output, NonNullList<Ingredient> nonNullList)
+        public ShapelessToolRecipe(ItemStack output, NonNullList<Ingredient> nonNullList)
         {
             this.group = PrimitiveTools.MODID;
             this.recipeOutput = output;
             this.recipeItems = nonNullList;
-            //this.setRegistryName(new ResourceLocation(PrimitiveTools.MODID,"shapeless_knife_recipe_"+output.getItem().getRegistryName().getResourcePath()));
         }
 
         @Override
@@ -80,23 +69,23 @@ public class RecipeShapelessKnife implements IRecipeFactory{
         @Override
         public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv)
         {
-            NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>withSize(inv.getSizeInventory(), ItemStack.EMPTY);
+        	NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>withSize(inv.getSizeInventory(), ItemStack.EMPTY);
 
             for (int i = 0; i < nonnulllist.size(); ++i)
             {
                 ItemStack itemstack = inv.getStackInSlot(i);
                
                 if(!itemstack.isEmpty()){
-                	
-                	for(ItemStack orestack : OreDictionary.getOres("toolKnife")){
-                		if(orestack.getItem() == itemstack.getItem()){
-                        	ItemStack knifecopy = itemstack.copy();
-                        	nonnulllist.set(i, knifecopy.getItem().getContainerItem(itemstack));
-                        	
-                    	}
+                	for(String name : OreDictionary.getOreNames()){
+                		if(!name.startsWith("tool")) continue;
+                		
+                		for(ItemStack orestack : OreDictionary.getOres(name)){
+                			if(orestack.getItem() == itemstack.getItem()){
+                				ItemStack toolcopy = itemstack.copy();
+                				nonnulllist.set(i, toolcopy.getItem().getContainerItem(itemstack));	
+                    		}
+                		}
                 	}
-                	
-                	
                 }else{
                 	 nonnulllist.set(i, net.minecraftforge.common.ForgeHooks.getContainerItem(itemstack));
                 } 
@@ -111,12 +100,9 @@ public class RecipeShapelessKnife implements IRecipeFactory{
             return this.recipeItems;
         }
 
-        /**
-         * Used to check if a recipe matches current crafting inventory
-         */
+
         public boolean matches(InventoryCrafting inv, World worldIn)
         {
-        	
             List<Ingredient> list = Lists.newArrayList(this.recipeItems);
 
             for (int i = 0; i < inv.getHeight(); ++i)
@@ -138,22 +124,16 @@ public class RecipeShapelessKnife implements IRecipeFactory{
                                 break;
                             }
                         }
-                        //PrimitiveTools.logger.info(flag);
                         if (!flag)
                         {
-                        	//PrimitiveTools.logger.info("false");
                             return false;
                         }
                     }
                 }
             }
-            //PrimitiveTools.logger.info(list.isEmpty());
             return list.isEmpty();
         }
 
-        /**
-         * Returns an Item that is the result of this recipe
-         */
         public ItemStack getCraftingResult(InventoryCrafting inv)
         {
             return this.recipeOutput.copy();
@@ -196,14 +176,9 @@ public class RecipeShapelessKnife implements IRecipeFactory{
             return nonnulllist;
         }
 
-        /**
-         * Used to determine if this recipe can fit in a grid of the given width/height
-         */
         public boolean canFit(int width, int height)
         {
             return width * height >= this.recipeItems.size();
         }
-    	
-
     } 
 }

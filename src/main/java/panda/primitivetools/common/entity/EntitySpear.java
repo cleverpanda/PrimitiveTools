@@ -437,7 +437,7 @@ public class EntitySpear extends Entity
 
 			if(iblockstate.getMaterial() != Material.AIR)
 			{
-				this.inTile.onEntityCollidedWithBlock(this.world, blockpos, iblockstate, this);
+				this.inTile.onEntityCollision(this.world, blockpos, iblockstate, this);
 			}
 		}
 	}
@@ -589,7 +589,7 @@ public class EntitySpear extends Entity
 	//TODO
 	public void setEnchantmentEffectsFromEntity(EntityLivingBase entity, float d)
 	{
-		this.setDamage((double) (d * 2.0F) + this.rand.nextGaussian() * 0.25D + (double) ((float) this.world.getDifficulty().getDifficultyId() * 0.11F));
+		this.setDamage((double) (d * 2.0F) + this.rand.nextGaussian() * 0.25D + (double) ((float) this.world.getDifficulty().getId() * 0.11F));
 	}
 	
 	

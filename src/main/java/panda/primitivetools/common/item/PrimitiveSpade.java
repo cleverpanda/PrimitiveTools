@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import panda.primitivetools.ConfigPrimitiveTools;
 
 public class PrimitiveSpade extends ItemSpade{
 	
@@ -45,12 +46,18 @@ public class PrimitiveSpade extends ItemSpade{
 	public float getDestroySpeed(ItemStack stack, IBlockState state)
     {
         Material material = state.getMaterial();
-        return material != Material.CLAY && material != Material.CRAFTED_SNOW && material != Material.GRASS && material != Material.GROUND && material != Material.SNOW && material != Material.SAND? 0.2f : 3f;
+        return material != Material.CLAY && material != Material.CRAFTED_SNOW && material != Material.GRASS && material != Material.GROUND && material != Material.SNOW && material != Material.SAND? 0.2f*ConfigPrimitiveTools.toolSpeedModifier*ConfigPrimitiveTools.SpadeSpeedModifier : 3f*ConfigPrimitiveTools.toolSpeedModifier*ConfigPrimitiveTools.SpadeSpeedModifier;
     }
 	
 	@Override
 	public boolean isBookEnchantable(ItemStack stack, ItemStack book)
     {
         return false;
+    }
+	
+	@Override
+	public boolean isRepairable()
+    {
+		return false;
     }
 }

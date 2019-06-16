@@ -10,6 +10,7 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import panda.primitivetools.ConfigPrimitiveTools;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 
@@ -51,7 +52,7 @@ public class PrimitiveRockHammer extends ItemPickaxe{
 	public float getDestroySpeed(ItemStack stack, IBlockState state)
     {
         Material material = state.getMaterial();
-        return material != Material.IRON && material != Material.ICE && material != Material.CIRCUITS && material != Material.CORAL &&  material != Material.ANVIL && material != Material.ROCK && material != Material.GLASS? 0.2f : 3.0f;
+        return material != Material.IRON && material != Material.ICE && material != Material.CIRCUITS && material != Material.CORAL &&  material != Material.ANVIL && material != Material.ROCK && material != Material.GLASS? 0.2f*ConfigPrimitiveTools.toolSpeedModifier*ConfigPrimitiveTools.HammerSpeedModifier : 3.0f*ConfigPrimitiveTools.toolSpeedModifier*ConfigPrimitiveTools.HammerSpeedModifier;
     }
 	
 	//Handle rock crushing
@@ -64,5 +65,11 @@ public class PrimitiveRockHammer extends ItemPickaxe{
         }
 
         return true;
+    }
+	
+	@Override
+	public boolean isRepairable()
+    {
+		return false;
     }
 }

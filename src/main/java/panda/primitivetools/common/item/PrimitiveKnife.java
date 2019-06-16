@@ -16,6 +16,7 @@ import net.minecraft.item.ItemTool;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import panda.primitivetools.ConfigPrimitiveTools;
 
 public class PrimitiveKnife extends ItemTool{
 
@@ -67,7 +68,7 @@ public class PrimitiveKnife extends ItemTool{
     {
         Block block = state.getBlock();
 
-        return EFFECTIVE_ON.contains(block)? 1.0F:0.2F;
+        return EFFECTIVE_ON.contains(block)? 1.0F*ConfigPrimitiveTools.toolSpeedModifier*ConfigPrimitiveTools.KnifeSpeedModifier:0.2F*ConfigPrimitiveTools.toolSpeedModifier*ConfigPrimitiveTools.KnifeSpeedModifier;
     }
 	
 	@Override
@@ -91,5 +92,11 @@ public class PrimitiveKnife extends ItemTool{
 	public boolean isBookEnchantable(ItemStack stack, ItemStack book)
     {
         return false;
+    }
+	
+	@Override
+	public boolean isRepairable()
+    {
+		return false;
     }
 }

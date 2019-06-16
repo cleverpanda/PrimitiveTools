@@ -9,6 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -24,7 +25,7 @@ import panda.primitivetools.proxy.CommonProxy;
 @Mod(modid = PrimitiveTools.MODID, name = PrimitiveTools.NAME, version = PrimitiveTools.VERSION)
 public class PrimitiveTools {
 	public static final String MODID = "primitivetools";
-	public static final String VERSION = "1.1.5";
+	public static final String VERSION = "1.1.8";
 	public static final String NAME = "Primitive Tools";
 	
 
@@ -35,10 +36,13 @@ public class PrimitiveTools {
 	public static CommonProxy proxy;
 
 	public static Logger logger = LogManager.getLogger(MODID);
-
+	public Configuration config;
+	
 	@EventHandler
 	public void preinit(FMLPreInitializationEvent event){
 		Materials.init();
+		config = new Configuration(event.getSuggestedConfigurationFile());
+		ConfigPrimitiveTools.load(config);
 	}
 	
 	@EventHandler
@@ -49,7 +53,7 @@ public class PrimitiveTools {
 
 	public static final CreativeTabs Tab = new CreativeTabs(MODID) {
 		@Override
-		public ItemStack getTabIconItem() {
+		public ItemStack createIcon() {
 			return new ItemStack(ModItems.PRIMITIVE_PICK_WVS);
 		}
 		

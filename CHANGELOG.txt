@@ -1,3 +1,16 @@
+1.1.8
+split gravel and sand drop logic
+Added option to disable sand, gravel, vine, and fiber drops.
+
+1.1.6
+Updated to latest Forge 1.12.2
+Added config file
+Added mining speed multiplier option
+Fixed Curseforge issue #3, duplicating tools. (tools are no longer repairable)
+Added vine drop chance option
+Added flint drop chance option
+Added fiber drop chance option
+
 1.1.5
 Fixed knife recipes
 JEI DOES NOT WORK BUT IT's BETTER THAN THE RECIPE NOT WORKING AMIRIGHT?

@@ -128,7 +128,7 @@ public class RenderSpear extends Render<EntitySpear>
 
 	@Override
 	protected ResourceLocation getEntityTexture(EntitySpear entity){
-		String name = entity.getItem().getItem().getRegistryName().getResourcePath();
+		String name = entity.getItem().getItem().getRegistryName().getPath();
 		String key = name.substring(Math.max(name.length() - 3, 0));
 		//if
 		return new ResourceLocation(PrimitiveTools.MODID, "textures/items/spears/primitive_spear_"+key+"_large.png");

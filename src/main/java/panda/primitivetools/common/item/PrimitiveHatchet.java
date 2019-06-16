@@ -10,6 +10,7 @@ import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import panda.primitivetools.ConfigPrimitiveTools;
 
 public class PrimitiveHatchet extends ItemAxe{
 	
@@ -39,7 +40,7 @@ public class PrimitiveHatchet extends ItemAxe{
 	public float getDestroySpeed(ItemStack stack, IBlockState state)
     {
         Material material = state.getMaterial();
-        return material != Material.WOOD && material != Material.GOURD && material != Material.PLANTS && material != Material.VINE ? 0.2f : 3f;
+        return material != Material.WOOD && material != Material.GOURD && material != Material.PLANTS && material != Material.VINE ? 0.2f*ConfigPrimitiveTools.toolSpeedModifier*ConfigPrimitiveTools.HatchetSpeedModifier : 3f*ConfigPrimitiveTools.toolSpeedModifier*ConfigPrimitiveTools.HatchetSpeedModifier;
     }
 	
 	@Override
@@ -52,6 +53,12 @@ public class PrimitiveHatchet extends ItemAxe{
 	public boolean isBookEnchantable(ItemStack stack, ItemStack book)
     {
         return false;
+    }
+	
+	@Override
+	public boolean isRepairable()
+    {
+		return false;
     }
 
 }
