@@ -4,22 +4,22 @@ import java.util.HashMap;
 
 public class Materials {
 	
-	static HashMap<Character, Float> materialslist = new HashMap<>();
+	private static HashMap<Character, Double> materialslist = new HashMap<>();
 	
 	public static void init(){
-		materialslist.put('w', 3f);
-		materialslist.put('b', 5f);
-		materialslist.put('f', 1.5f);
-		materialslist.put('v', 2f);
-		materialslist.put('l', 3.2f);
+		materialslist.put('w', ConfigPrimitiveTools.MaterialDurability.handleDurability.w);
+		materialslist.put('b', ConfigPrimitiveTools.MaterialDurability.handleDurability.b);
+		materialslist.put('f', ConfigPrimitiveTools.MaterialDurability.bindingDurability.f);
+		materialslist.put('v', ConfigPrimitiveTools.MaterialDurability.bindingDurability.v);
+		materialslist.put('l', ConfigPrimitiveTools.MaterialDurability.bindingDurability.l);
 		
 		//regular tool heads
-		materialslist.put('c', 15f);//c = chert = flint
+		materialslist.put('c', ConfigPrimitiveTools.MaterialDurability.headDurability.c); //c = chert = flint
 		
 		//hammer materials
-		materialslist.put('s', 8f); 
-		materialslist.put('d', 18f);
-		materialslist.put('g', 26f);
+		materialslist.put('s', ConfigPrimitiveTools.MaterialDurability.hammerDurability.s);
+		materialslist.put('d', ConfigPrimitiveTools.MaterialDurability.hammerDurability.d);
+		materialslist.put('g', ConfigPrimitiveTools.MaterialDurability.hammerDurability.g);
 	}
 	
 	public static int getDurabForParts(String key){
@@ -27,8 +27,7 @@ public class Materials {
 		char head = key.charAt(0);
 		char rod = key.charAt(1);
 		char binding = key.charAt(2);
-		
-		
-		return Math.round(materialslist.get(head)*(materialslist.get(binding) + materialslist.get(rod)));
+
+		return (int)Math.round(materialslist.get(head)*(materialslist.get(binding) + materialslist.get(rod)));
 	}
 }

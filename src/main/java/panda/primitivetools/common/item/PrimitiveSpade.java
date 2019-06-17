@@ -46,7 +46,7 @@ public class PrimitiveSpade extends ItemSpade{
 	public float getDestroySpeed(ItemStack stack, IBlockState state)
     {
         Material material = state.getMaterial();
-        return material != Material.CLAY && material != Material.CRAFTED_SNOW && material != Material.GRASS && material != Material.GROUND && material != Material.SNOW && material != Material.SAND? 0.2f*ConfigPrimitiveTools.toolSpeedModifier*ConfigPrimitiveTools.SpadeSpeedModifier : 3f*ConfigPrimitiveTools.toolSpeedModifier*ConfigPrimitiveTools.SpadeSpeedModifier;
+        return material != Material.CLAY && material != Material.CRAFTED_SNOW && material != Material.GRASS && material != Material.GROUND && material != Material.SNOW && material != Material.SAND? (float)(0.2f*ConfigPrimitiveTools.toolSpeed.toolSpeedModifier*ConfigPrimitiveTools.toolSpeed.SpadeSpeedModifier) : (float)(3f*ConfigPrimitiveTools.toolSpeed.toolSpeedModifier*ConfigPrimitiveTools.toolSpeed.SpadeSpeedModifier);
     }
 	
 	@Override

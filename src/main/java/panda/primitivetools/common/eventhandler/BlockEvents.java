@@ -103,7 +103,7 @@ public class BlockEvents {
 		if (block == Blocks.VINE && !e.isSilkTouching() && held != null &&
 				held.getItem() instanceof PrimitiveKnife){
 			
-			if(ConfigPrimitiveTools.vineDropChance != 0 &&  rand.nextInt(ConfigPrimitiveTools.vineDropChance) == 0) {
+			if(ConfigPrimitiveTools.chanceModifiers.vineDropChance != 0 &&  rand.nextInt(ConfigPrimitiveTools.chanceModifiers.vineDropChance) == 0) {
 				e.getDrops().add(new ItemStack(Blocks.VINE));
 			}
 			return;
@@ -112,7 +112,7 @@ public class BlockEvents {
 
 		if ((block == Blocks.TALLGRASS || block == Blocks.DOUBLE_PLANT) && !e.isSilkTouching())
 		{
-			int chance = ConfigPrimitiveTools.fiberDropChance;
+			int chance = ConfigPrimitiveTools.chanceModifiers.fiberDropChance;
 			
 			if(chance == 0) {
 				return;
@@ -138,7 +138,7 @@ public class BlockEvents {
 		
 		if (block == Blocks.SAND && !e.isSilkTouching())
 		{
-			int chance = ConfigPrimitiveTools.flintSandDropChance;
+			int chance = ConfigPrimitiveTools.chanceModifiers.flintSandDropChance;
 			if(chance == 0) {
 				return;
 			}
@@ -157,7 +157,7 @@ public class BlockEvents {
 		
 		if (block == Blocks.GRAVEL && !e.isSilkTouching())
 		{
-			int chance = ConfigPrimitiveTools.flintGravelDropChance;
+			int chance = ConfigPrimitiveTools.chanceModifiers.flintGravelDropChance;
 			
 			if(chance == 0) {
 				return;
