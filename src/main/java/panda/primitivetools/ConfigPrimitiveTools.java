@@ -44,44 +44,44 @@ public class ConfigPrimitiveTools {
 	}
 
 	@Config(modid = PrimitiveTools.MODID, category = "materialDurability")
-	static class MaterialDurability {
+	public static class MaterialDurability {
 		@Name("handles")	@Comment("Durability for handle materials")
-		static Handles handleDurability = new Handles();
+		public static Handles handleDurability = new Handles();
 		@Name("bindings")	@Comment("Durability for binding materials")
-		static Bindings bindingDurability = new Bindings();
+		public static Bindings bindingDurability = new Bindings();
 		@Name("heads")		@Comment("Durability for head materials")
-		static Heads headDurability = new Heads();
+		public static Heads headDurability = new Heads();
 		@Name("hammers")	@Comment("Durability for hammer materials")
-		static Hammers hammerDurability = new Hammers();
+		public static Hammers hammerDurability = new Hammers();
 
-		static class Handles {
+		public static class Handles {
 			@Name("wood")	@RangeDouble(min = 0.0f, max = 10.0f)	@Comment("Wooden tool handles.")
-			double w = 3.0;
+			public double w = 3.0;
 			@Name("bone")	@RangeDouble(min = 0.0f, max = 10.0f)	@Comment("Bone tool heads.")
-			double b = 5.0;
+			public double b = 5.0;
 		}
 
-		static class Bindings {
+		public static class Bindings {
 			@Name("fiber")		@RangeDouble(min = 0.0f, max = 5.0f)	@Comment("Fiber tool bindings.")
-			double f = 1.5;
+			public double f = 1.5;
 			@Name("vine")		@RangeDouble(min = 0.0f, max = 5.0f)	@Comment("Vine tool bindings.")
-			double v = 2.0;
+			public double v = 2.0;
 			@Name("leather")	@RangeDouble(min = 0.0f, max = 5.0f)	@Comment("Leather tool bindings.")
-			double l = 3.2;
+			public double l = 3.2;
 		}
 
-		static class Heads {
+		public static class Heads {
 			@Name("flint")	@RangeDouble(min = 0.0f, max = 30.0f)	@Comment("Flint tool heads.")
-			double c = 15.0;
+			public double c = 15.0;
 		}
 
-		static class Hammers {
+		public static class Hammers {
 			@Name("stone")		@RangeDouble(min = 0.0f, max = 30.0f)	@Comment("Stone hammer heads.")
-			double s = 8.0;
+			public double s = 8.0;
 			@Name("diorite")	@RangeDouble(min = 0.0f, max = 30.0f)	@Comment("Diorite hammer heads.")
-			double d = 18.0;
+			public double d = 18.0;
 			@Name("granite")	@RangeDouble(min = 0.0f, max = 30.0f)	@Comment("Granite hammer heads.")
-			double g = 26.0;
+			public double g = 26.0;
 		}
 	}
 
